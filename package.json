@@ -23,6 +23,7 @@
     "google-spreadsheet": "^4.1.4",
     "googleapis": "^148.0.0",
     "http": "^0.0.1-security",
+    "mongoose": "^8.13.2",
     "openai": "^4.91.0",
     "sqlite3": "^5.1.7"
   }

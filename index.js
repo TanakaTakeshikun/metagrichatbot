@@ -2,7 +2,6 @@ if (typeof ReadableStream === 'undefined') {
     global.ReadableStream = require('stream/web').ReadableStream;
 }
 process.env.TZ = 'Asia/Tokyo'
-//test
 const querystring = require("node:querystring");
 const { Client, GatewayIntentBits, Partials } = require('discord.js');
 const path = require('node:path');

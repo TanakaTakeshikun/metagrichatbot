@@ -11,16 +11,16 @@ const Input = new TextInputBuilder()
   .setCustomId("text")
   .setLabel("質問入力")
   .setMaxLength(50)
-  .setPlaceholder("NFT購入金額")
+  .setPlaceholder("Metagri研究所のメンバー数は？")
   .setStyle(TextInputStyle.Short);
+const question_Row = new ActionRowBuilder().addComponents(Input);
+chat_modal.addComponents(question_Row);
 
 module.exports = {
   builder: (builder) =>
     builder.setName("chat").setDescription("Metagriに関する質問を表示します"),
 
   async execute(interaction) {
-    const question_Row = new ActionRowBuilder().addComponents(Input);
-    chat_modal.addComponents(question_Row);
     await interaction.showModal(chat_modal);
   },
 };
