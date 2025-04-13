@@ -7,7 +7,6 @@ function getCommandDatas(obj) {
     const commandFiles = fs.readdirSync(obj).filter(file => file.endsWith('.js'));
     return commandFiles.map((commandFile) => require(path.resolve(obj, commandFile)));
 }
-
 class Subcommand {
     constructor(data, parent, builderClass = SlashCommandSubcommandBuilder) {
         this.builder = data.builder;

@@ -1,7 +1,7 @@
 const { Events, StringSelectMenuBuilder, StringSelectMenuOptionBuilder, ActionRowBuilder, ThreadAutoArchiveDuration, Colors } = require('discord.js');
 const Tag = require('../../Tag.json');
-const { CustomEmbed, AI } = require('../../libs');
-
+const { CustomEmbed, AI, spreadsheet } = require('../../libs');
+const spsheet = new spreadsheet()
 //const mongoose = require('mongoose');
 
 module.exports = {
@@ -10,6 +10,7 @@ module.exports = {
   async execute(interaction) {
     if (interaction.channel.type !== 0) return;
     const text = interaction.fields.getTextInputValue('text');
+    await spsheet.set({ type: "chatbot", userId: interaction.user.id, userName: interaction.user.username, content: text });
     const select_tag = Object.keys(Tag).filter(x => text.match(`^(?=.*${x}).*$`));
     const content = Tag[select_tag]
     const channel = await interaction.channel.threads.create({
@@ -22,7 +23,8 @@ module.exports = {
       .setDescription(`質問に関する回答をスレッドで開始しました\nスレッドチャンネル:${channel}`)
       .setColor(Colors.Green)
       .create();
-    await interaction.reply({ embeds: [thread_embed]});
+    await interaction.reply({ embeds: [thread_embed] });
+
     if (content) {
       const tags = Object.keys(content);
       const tag_list = new StringSelectMenuBuilder()

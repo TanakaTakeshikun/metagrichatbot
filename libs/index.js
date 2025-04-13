@@ -7,3 +7,4 @@ module.exports.EmbedBuild = require('./EmbedBuild');
 const EmbedUtil = require('./EmbedBuild');
 module.exports.CustomEmbed = EmbedUtil.CustomEmbed;
 module.exports.AI = require('./AI');
+module.exports.spreadsheet = require('./spreadsheet');
