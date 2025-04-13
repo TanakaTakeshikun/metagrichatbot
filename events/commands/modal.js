@@ -1,7 +1,8 @@
 const { Events, StringSelectMenuBuilder, StringSelectMenuOptionBuilder, ActionRowBuilder, ThreadAutoArchiveDuration, Colors } = require('discord.js');
 const Tag = require('../../Tag.json');
 const { CustomEmbed, AI, spreadsheet } = require('../../libs');
-const spsheet = new spreadsheet()
+const spsheet = new spreadsheet();
+const setting = require('../../setting.json');
 //const mongoose = require('mongoose');
 
 module.exports = {
@@ -9,6 +10,7 @@ module.exports = {
   filter: (i) => i.isModalSubmit() && i.customId.startsWith('chatbot'),
   async execute(interaction) {
     if (interaction.channel.type !== 0) return;
+    if (interaction.channel.id !== setting.bot.chatchannel) return;
     const text = interaction.fields.getTextInputValue('text');
     await spsheet.set({ type: "chatbot", userId: interaction.user.id, userName: interaction.user.username, content: text });
     const select_tag = Object.keys(Tag).filter(x => text.match(`^(?=.*${x}).*$`));
