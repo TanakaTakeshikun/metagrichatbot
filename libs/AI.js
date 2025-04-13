@@ -1,6 +1,6 @@
 const OpenAI = require('openai');
 require('dotenv').config()
-const OpenAiApi = new OpenAI({ apiKey: process.env.apiKey });
+const OpenAiApi = new OpenAI({ apiKey: process.env.apikey });
 const fs = require('node:fs');
 const AI = fs.readFileSync('./AI.txt', 'utf8');
 const spam_protect = new Map();
